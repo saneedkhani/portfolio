@@ -1,0 +1,109 @@
+/* =========================================================
+   BASE — tokens, reset, typography
+   Design concept: "index ledger" — the visual language of a
+   search index / benchmark log, since the subject's real work
+   is retrieval systems (FAISS, HNSW, RAG). Cards read like
+   catalog records; stats read like terminal output.
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* color */
+  --bg:        #12141A;
+  --surface:   #1B1E26;
+  --surface-2: #21252F;
+  --border:    #2A2E38;
+  --border-hi: #3A3F4C;
+  --text:      #E9E7E2;
+  --text-muted:#8B8F9B;
+  --text-dim:  #5B5F6B;
+  --accent:    #E8A33D; /* amber — primary / active record */
+  --accent-2:  #4FA8A0; /* muted teal — tags, secondary data */
+  --accent-rgb: 232, 163, 61;
+
+  /* type */
+  --font-display: 'JetBrains Mono', ui-monospace, monospace;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  /* layout */
+  --maxw: 1120px;
+  --gutter: 24px;
+  --radius: 3px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* faint index-card grid texture on the page background */
+body {
+  background-image:
+    linear-gradient(rgba(232, 163, 61, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 163, 61, 0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+h1 { font-size: clamp(2.4rem, 5vw, 4.2rem); }
+h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+h3 { font-size: 1.25rem; }
+
+p { color: var(--text-muted); }
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.container {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.mono { font-family: var(--font-display); }
+
+/* visible keyboard focus everywhere */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: rgba(var(--accent-rgb), 0.3);
+  color: var(--text);
+}
